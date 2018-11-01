@@ -1,24 +1,14 @@
 import * as PIXI from "pixi.js";
 import * as CANNON from "cannon";
 import {physicsWorld} from './Physics';
-import SpriteSheet from '../images/spritesheet.png';
 import Dungeon from "./generation/Dungeon";
 import Room from "./Room";
 
-const sphereBody = new CANNON.Body({
-  mass: 5, // kg
-  position: new CANNON.Vec3(0, 0, 0), // m
-  shape: new CANNON.Sphere(1)
-});
-physicsWorld.addBody(sphereBody);
+import SpriteSheet from '../images/spritesheet.png';
 
-//Create a Pixi Application
 let app = new PIXI.Application({width: 800, height: 600});
-
-//Add the canvas that Pixi automatically created for you to the HTML document
 document.body.appendChild(app.view);
 
-// load the texture we need
 PIXI.loader
 .add(
   'spriteSheet', SpriteSheet
