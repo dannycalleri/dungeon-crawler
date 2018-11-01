@@ -1,3 +1,7 @@
+const roundToNum = (num: number, roundTo: number) => {
+  return Math.floor((num + roundTo - 1) / roundTo) * roundTo;
+};
+
 // https://stackoverflow.com/questions/5837572/generate-a-random-point-within-a-circle-uniformly
 const getRandomPointInCircle = (radius: number): Point => {
   const t = 2 * Math.PI * Math.random();
@@ -10,11 +14,12 @@ const getRandomPointInCircle = (radius: number): Point => {
   }
 
   return {
-    x: radius * r * Math.cos(t),
-    y: radius * r * Math.sin(t)
+    x: roundToNum(radius * r * Math.cos(t), 32),
+    y: roundToNum(radius * r * Math.sin(t), 32),
   };
 }
 
 export {
+  roundToNum,
   getRandomPointInCircle
 };

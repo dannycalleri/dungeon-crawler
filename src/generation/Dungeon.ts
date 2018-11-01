@@ -1,9 +1,5 @@
-import { 
-  Rectangle,
-  Graphics,
-  Container 
-} from "pixi.js";
-import { getRandomPointInCircle } from "./functions";
+import { Container, Rectangle } from "pixi.js";
+import { getRandomPointInCircle, roundToNum } from "./functions";
 
 class Dungeon {
   private rooms: Array<Rectangle> = [];
@@ -26,8 +22,8 @@ class Dungeon {
       const rect = new Rectangle(
         point.x,
         point.y,
-        50 + (50 * Math.random()),
-        50 + (50 * Math.random()),
+        roundToNum(50 + (50 * Math.random()), 32),
+        roundToNum(50 + (50 * Math.random()), 32),
       );
       this.rooms.push(rect);
   
