@@ -19,16 +19,7 @@ PIXI.loader
   let renderRectangle = new PIXI.Rectangle(0, 0, 16, 16);
   texture.frame = renderRectangle;
 
-  let rocket = new PIXI.Sprite(texture);
-  rocket.x = 32;
-  rocket.y = 32;
-  app.stage.addChild(rocket);
-
-  let texture2:PIXI.Texture = PIXI.utils.TextureCache["spriteSheet"].clone();
-  const sprite = new PIXI.Sprite(texture2);
-  let renderRectangleSprite2 = new PIXI.Rectangle(16, 16, 16, 16);
-  texture.frame = renderRectangleSprite2;
-
+  const sprite = new PIXI.Sprite(texture);
   sprite.x = app.renderer.width / 2;
   sprite.y = app.renderer.height / 2;
   sprite.anchor.x = 0.5;

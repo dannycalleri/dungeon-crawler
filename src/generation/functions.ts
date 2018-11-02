@@ -1,3 +1,5 @@
+import { Point } from '../compiler/types';
+
 const roundToNum = (num: number, roundTo: number) => {
   return Math.floor((num + roundTo - 1) / roundTo) * roundTo;
 };

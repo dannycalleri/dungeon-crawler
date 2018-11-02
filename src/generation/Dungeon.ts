@@ -1,5 +1,6 @@
 import { Container, Rectangle } from "pixi.js";
 import { getRandomPointInCircle, roundToNum } from "./functions";
+import { Point } from "../compiler/types";
 
 class Dungeon {
   private rooms: Array<Rectangle> = [];
