@@ -9,18 +9,23 @@ export interface IGame {
 }
 
 export interface IScene {
-  container?: Container;
+  x: number;
+  y: number;
+  container: Container;
   gameObjects: Array<IGameObject>;
+  addChild(gameObject: IGameObject): void;
   update(deltaTime: number): void;
 }
 
 export interface IGameObject {
   x: number;
   y: number;
+  gameObjects: Array<IGameObject>;
   rigidBody?: Body;
   container?: Container;
   // this container is used only for debug purposes
-  debugContainer?: Container;
+  debugContainer: Container;
+  addChild(gameObject: IGameObject): void;
   update(deltaTime: number): void;
 }
 

@@ -1,17 +1,17 @@
 import { Graphics } from "pixi.js";
 import { Body, Vec3, Box } from "cannon";
 import {physicsWorld} from "./Physics";
+import GameObject from "./GameObject";
 
-class Room {
-  private x:number = 0;
-  private y:number = 0;
+class Room extends GameObject {
   private width:number = 0;
   private height:number = 0;
-  private graphics: Graphics;
-  private rigidBody: Body;
   private isColliding: Boolean;
 
   public constructor(x: number, y: number, width: number, height: number) {
+    super();
+    this.x = x;
+    this.y = y;
     this.width = width;
     this.height = height;
     
@@ -20,9 +20,9 @@ class Room {
     rectGraphic.beginFill(0x66CCFF);
     rectGraphic.drawRect(0, 0, width, height);
     rectGraphic.endFill();
-    rectGraphic.x = x;
-    rectGraphic.y = y;
-    this.graphics = rectGraphic;
+    rectGraphic.x = 0;
+    rectGraphic.y = 0;
+    this.container.addChild(rectGraphic);
 
     const body = new Body({
       mass: 1, // kg
@@ -36,11 +36,11 @@ class Room {
   }
 
   public getRigidBody() { return this.rigidBody; }
-  public getGraphics() { return this.graphics; }
   public getWidth() { return this.width; }
   public getHeight() { return this.height; }
 
-  public update() {
+  public update(deltaTime: number) {
+    super.update(deltaTime);
     this.rigidBody.velocity.setZero();
   }
 }
