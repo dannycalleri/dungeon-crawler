@@ -17,7 +17,7 @@ class Room extends GameObject {
     
     let rectGraphic = new Graphics();
     rectGraphic.lineStyle(4, 0xFF3300, 1);
-    rectGraphic.beginFill(0x66CCFF);
+    rectGraphic.beginFill(0x0, 0);
     rectGraphic.drawRect(0, 0, width, height);
     rectGraphic.endFill();
     rectGraphic.x = 0;

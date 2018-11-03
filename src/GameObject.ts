@@ -16,11 +16,11 @@ export default class GameObject implements IGameObject {
     
     let rectGraphic = new Graphics();
     rectGraphic.lineStyle(2, 0xFF3300, 1);
-    rectGraphic.beginFill(0x0);
-    rectGraphic.drawRect(0, 0, 16, 16);
+    rectGraphic.beginFill(0x0, 0);
+    rectGraphic.drawRect(0, 0, 8, 8);
     rectGraphic.endFill();
-    rectGraphic.x = this.x;
-    rectGraphic.y = this.y;
+    rectGraphic.x = 0;
+    rectGraphic.y = 0;
     // rectGraphic.pivot.set(8, 8);
     this.debugContainer.addChild(rectGraphic);
 
