@@ -4,12 +4,20 @@ import { physicsWorld } from "./Physics";
 
 export default class Game implements IGame {
   private _currentScene: IScene;
+  private app: PIXI.Application;
   scenes: Map<string, IScene>;
-  app: PIXI.Application;
 
   constructor() {
     this.app = new PIXI.Application({width: 800, height: 600});
     document.body.appendChild(this.app.view);
+  }
+
+  public get width() {
+    return this.app.renderer.width;
+  }
+
+  public get height() {
+    return this.app.renderer.height;
   }
 
   public get currentScene() {

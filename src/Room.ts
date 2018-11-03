@@ -25,9 +25,9 @@ class Room extends GameObject {
     this.container.addChild(rectGraphic);
 
     const body = new Body({
-      mass: 1, // kg
+      mass: 5, // kg
       position: new Vec3(x, y, 0), // m
-      shape: new Box(new Vec3(width/2, height/2, 100)),
+      shape: new Box(new Vec3(Math.ceil(width/2), Math.ceil(height/2), 100)),
     });
     body.fixedRotation = true;
     // body.collisionResponse = false;
@@ -41,7 +41,8 @@ class Room extends GameObject {
 
   public update(deltaTime: number) {
     super.update(deltaTime);
-    this.rigidBody.velocity.setZero();
+    // this.rigidBody.velocity.setZero();
+    // this.rigidBody.force.setZero();
   }
 }
 

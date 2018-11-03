@@ -1,6 +1,7 @@
 import { 
   IScene, 
-  IGameObject 
+  IGameObject, 
+  Point
 } from "./compiler/types";
 import { Container } from "pixi.js";
 
@@ -25,6 +26,18 @@ export default class Scene implements IScene {
   public set y(y: number) {
     this._y = y;
     this.container.y = y;
+  }
+
+  public get pivot(): Point {
+    return {
+      x: this.container.pivot.x,
+      y: this.container.pivot.y,
+    };
+  }
+
+  public set pivot(p: Point) {
+    this.container.pivot.x = p.x;
+    this.container.pivot.y = p.y;
   }
 
   public addChild(gameObject: IGameObject) {
