@@ -1,4 +1,3 @@
-import { Body } from "cannon";
 import { Container } from "pixi.js";
 
 export interface IGame {
@@ -21,7 +20,8 @@ export interface IGameObject {
   x: number;
   y: number;
   gameObjects: Array<IGameObject>;
-  rigidBody?: Body;
+  // the following should be a body object by planck
+  rigidBody?: any;
   container?: Container;
   // this container is used only for debug purposes
   debugContainer: Container;

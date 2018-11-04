@@ -1,7 +1,8 @@
-import * as CANNON from "cannon";
+import { World, Vec2 } from 'planck-js';
 
-const physicsWorld = new CANNON.World();
-physicsWorld.gravity.set(0, 0, 0);
+const physicsWorld = World({
+  gravity: Vec2(0, 0)
+});
 
 export {
   physicsWorld,
