@@ -1,5 +1,5 @@
 import { Graphics } from "pixi.js";
-import { Body, Vec3, Box } from "cannon";
+import { Vec2, Box } from "planck-js";
 import {physicsWorld} from "./Physics";
 import GameObject from "./GameObject";
 
@@ -24,15 +24,24 @@ class Room extends GameObject {
     rectGraphic.y = 0;
     this.container.addChild(rectGraphic);
 
-    const body = new Body({
-      mass: 5, // kg
-      position: new Vec3(x, y, 0), // m
-      shape: new Box(new Vec3(Math.ceil(width/2), Math.ceil(height/2), 100)),
+    // const body = new Body({
+    //   mass: 5, // kg
+    //   position: new Vec3(x, y, 0), // m
+    //   shape: new Box(new Vec3(Math.ceil(width/2), Math.ceil(height/2), 100)),
+    // });
+    const body = physicsWorld.createBody().setDynamic();
+    body.createFixture(Box(width/2, height/2));
+    body.setPosition(Vec2(x, y));
+    body.setMassData({
+      mass : 1,
+      center : Vec2(),
+      I : 1
     });
-    body.fixedRotation = true;
+    // body.fixedRotation = true;
     // body.collisionResponse = false;
     this.rigidBody = body;
-    physicsWorld.addBody(body);
+    // physicsWorld.addBody(body);
+    console.log(this.rigidBody);
   }
 
   public getRigidBody() { return this.rigidBody; }

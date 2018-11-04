@@ -1,6 +1,5 @@
 import { IGameObject, Point } from "./compiler/types";
 import { Container, Graphics } from "pixi.js";
-import { Body } from "cannon";
 
 export default class GameObject implements IGameObject {
   _x: number = 0;
@@ -8,7 +7,7 @@ export default class GameObject implements IGameObject {
   gameObjects: Array<IGameObject> = [];
   container: Container;
   debugContainer: Container;
-  rigidBody?: Body;
+  rigidBody?: any;
 
   constructor() {
     this.container = new Container();
@@ -34,7 +33,8 @@ export default class GameObject implements IGameObject {
     this._x = x;
     this.container.x = x;
     if(this.rigidBody) {
-      this.rigidBody.position.x = x;
+      const pos = this.rigidBody.getPosition();
+      this.rigidBody.setPosition(x, pos.y);
     }
   }
 
@@ -42,7 +42,8 @@ export default class GameObject implements IGameObject {
     this._y = y;
     this.container.y = y;
     if(this.rigidBody) {
-      this.rigidBody.position.y = y;
+      const pos = this.rigidBody.getPosition();
+      this.rigidBody.setPosition(pos.x, y);
     }
   }
 
@@ -68,8 +69,9 @@ export default class GameObject implements IGameObject {
 
   public update(deltaTime: number) {
     if(this.rigidBody) {
-      this.x = this.rigidBody.position.x;
-      this.y = this.rigidBody.position.y;
+      const pos = this.rigidBody.getPosition();
+      this.x = pos.x;
+      this.y = pos.y;
     }
 
     this.gameObjects.forEach((g: IGameObject) => {
