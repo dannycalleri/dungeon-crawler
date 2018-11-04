@@ -1,7 +1,7 @@
 import { Graphics } from "pixi.js";
-import { Body, Vec3, Box } from "cannon";
-import {physicsWorld} from "./Physics";
+import {world, engine} from "./Physics";
 import GameObject from "./GameObject";
+import { Bodies } from "matter-js";
 
 class Room extends GameObject {
   private width:number = 0;
@@ -24,15 +24,10 @@ class Room extends GameObject {
     rectGraphic.y = 0;
     this.container.addChild(rectGraphic);
 
-    const body = new Body({
-      mass: 5, // kg
-      position: new Vec3(x, y, 0), // m
-      shape: new Box(new Vec3(Math.ceil(width/2), Math.ceil(height/2), 100)),
-    });
-    body.fixedRotation = true;
-    // body.collisionResponse = false;
+    const body = Bodies.rectangle(x, y, width, height);
+    // body.fixedRotation = true;
     this.rigidBody = body;
-    physicsWorld.addBody(body);
+    world.add(engine.world, body);
   }
 
   public getRigidBody() { return this.rigidBody; }

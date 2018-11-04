@@ -1,5 +1,5 @@
-import { Body } from "cannon";
 import { Container } from "pixi.js";
+import { Body } from "matter-js";
 
 export interface IGame {
   currentScene: IScene;

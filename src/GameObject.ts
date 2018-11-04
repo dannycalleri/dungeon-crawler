@@ -1,6 +1,6 @@
 import { IGameObject, Point } from "./compiler/types";
 import { Container, Graphics } from "pixi.js";
-import { Body } from "cannon";
+import { Body } from "matter-js";
 
 export default class GameObject implements IGameObject {
   _x: number = 0;

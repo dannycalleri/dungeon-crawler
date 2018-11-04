@@ -12,19 +12,20 @@ export default class DungeonCrawler extends Game {
 
   private setup() {
     const scene = new Scene();
+    scene.pivot = {
+      x: -this.width / 2,
+      y: -this.height / 2,
+    };
+
     for(let i=0; i < 20; i++) {
-      const point: Point = getRandomPointInCircle(500);
+      const point: Point = getRandomPointInCircle(100);
       const room = new Room(
         point.x,
         point.y,
-        roundToNum(50 + (50 * Math.random()), 32),
-        roundToNum(50 + (50 * Math.random()), 32),
+        64,
+        64
       );
       scene.addChild(room);
-      scene.pivot = {
-        x: -this.width / 2,
-        y: -this.height / 2,
-      };
     }
 
     this.currentScene = scene;

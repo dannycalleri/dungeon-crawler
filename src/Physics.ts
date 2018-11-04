@@ -1,8 +1,10 @@
-import * as CANNON from "cannon";
+import { World, Engine } from "matter-js";
 
-const physicsWorld = new CANNON.World();
-physicsWorld.gravity.set(0, 0, 0);
+const engine = Engine.create();
+engine.world.gravity.x = 0;
+engine.world.gravity.y = 0;
 
 export {
-  physicsWorld,
+  World as world,
+  engine,
 };

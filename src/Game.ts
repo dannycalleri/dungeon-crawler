@@ -1,6 +1,7 @@
 import * as PIXI from "pixi.js";
 import { IGame, IScene } from "./compiler/types";
-import { physicsWorld } from "./Physics";
+import { Engine } from "matter-js";
+import { engine } from "./Physics";
 
 export default class Game implements IGame {
   private _currentScene: IScene;
@@ -44,7 +45,7 @@ export default class Game implements IGame {
       let deltaTime: number = 0;
       if(lastTime !== undefined){
         deltaTime = (time - lastTime) / 1000;
-        physicsWorld.step(fixedTimeStep, deltaTime, maxSubSteps);
+        Engine.update(engine, 1000 / 60);
       }
       
       update(deltaTime);
