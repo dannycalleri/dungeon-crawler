@@ -1,4 +1,4 @@
-import { IGameObject } from "./compiler/types";
+import { IGameObject, Point } from "./compiler/types";
 import { Container, Graphics } from "pixi.js";
 import { Body } from "cannon";
 
@@ -44,6 +44,18 @@ export default class GameObject implements IGameObject {
     if(this.rigidBody) {
       this.rigidBody.position.y = y;
     }
+  }
+
+  public get pivot(): Point {
+    return {
+      x: this.container.pivot.x,
+      y: this.container.pivot.y,
+    };
+  }
+
+  public set pivot(p: Point) {
+    this.container.pivot.x = p.x;
+    this.container.pivot.y = p.y;
   }
 
   public addChild(gameObject: IGameObject) {
