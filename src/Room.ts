@@ -1,4 +1,7 @@
-import { Graphics } from "pixi.js";
+import { 
+  Graphics,
+  Sprite,
+} from "pixi.js";
 import {world, engine} from "./Physics";
 import GameObject from "./GameObject";
 import { Bodies } from "matter-js";
@@ -14,18 +17,22 @@ class Room extends GameObject {
     this.y = y;
     this.width = width;
     this.height = height;
-    
+
     let rectGraphic = new Graphics();
     rectGraphic.lineStyle(4, 0xFF3300, 1);
     rectGraphic.beginFill(0x0, 0);
     rectGraphic.drawRect(0, 0, width, height);
     rectGraphic.endFill();
-    rectGraphic.x = 0;
-    rectGraphic.y = 0;
-    this.container.addChild(rectGraphic);
+    
+    const texture = rectGraphic.generateCanvasTexture();
+    const sprite = new Sprite(texture);
+    sprite.anchor.x = 0.5;
+    sprite.anchor.y = 0.5;
+    this.container.addChild(sprite);
 
-    const body = Bodies.rectangle(x, y, width, height);
-    // body.fixedRotation = true;
+    const body = Bodies.rectangle(x, y, width, height, {
+      inertia: Infinity,
+    });
     this.rigidBody = body;
     world.add(engine.world, body);
   }
@@ -36,8 +43,6 @@ class Room extends GameObject {
 
   public update(deltaTime: number) {
     super.update(deltaTime);
-    // this.rigidBody.velocity.setZero();
-    // this.rigidBody.force.setZero();
   }
 }
 

@@ -9,7 +9,7 @@ export default class Game implements IGame {
   scenes: Map<string, IScene>;
 
   constructor() {
-    this.app = new PIXI.Application({width: 800, height: 600});
+    this.app = new PIXI.Application({width: 1600, height: 1200});
     document.body.appendChild(this.app.view);
   }
 

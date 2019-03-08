@@ -15,15 +15,13 @@ export default class GameObject implements IGameObject {
     this.debugContainer = new Container();
     
     let rectGraphic = new Graphics();
-    rectGraphic.lineStyle(2, 0xFF3300, 1);
+    rectGraphic.lineStyle(2, 0x888888, 1);
     rectGraphic.beginFill(0x0, 0);
-    rectGraphic.drawRect(0, 0, 8, 8);
+    rectGraphic.drawRect(-1, -1, 2, 2);
     rectGraphic.endFill();
     rectGraphic.x = 0;
     rectGraphic.y = 0;
-    // rectGraphic.pivot.set(8, 8);
     this.debugContainer.addChild(rectGraphic);
-
     this.container.addChild(this.debugContainer);
   }
 

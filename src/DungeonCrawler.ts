@@ -17,13 +17,13 @@ export default class DungeonCrawler extends Game {
       y: -this.height / 2,
     };
 
-    for(let i=0; i < 20; i++) {
+    for(let i=0; i < 40; i++) {
       const point: Point = getRandomPointInCircle(100);
       const room = new Room(
         point.x,
         point.y,
-        64,
-        64
+        32 + roundToNum(Math.floor(Math.random() * 64), 32),
+        32 + + roundToNum(Math.floor(Math.random() * 64), 32),
       );
       scene.addChild(room);
     }
