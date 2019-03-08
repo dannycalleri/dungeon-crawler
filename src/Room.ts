@@ -7,9 +7,9 @@ import GameObject from "./GameObject";
 import { Bodies } from "matter-js";
 
 class Room extends GameObject {
-  private width:number = 0;
-  private height:number = 0;
-  private isColliding: Boolean;
+  private width: number = 0;
+  private height: number = 0;
+  private isColliding: boolean;
 
   public constructor(x: number, y: number, width: number, height: number) {
     super();
@@ -37,7 +37,7 @@ class Room extends GameObject {
     world.add(engine.world, body);
   }
 
-  public update(deltaTime: number) {
+  public update(deltaTime: number): void {
     super.update(deltaTime);
   }
 }
