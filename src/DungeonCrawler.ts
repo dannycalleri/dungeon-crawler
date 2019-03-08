@@ -5,12 +5,12 @@ import { getRandomPointInCircle, roundToNum } from './generation/functions';
 import { Point } from './compiler/types';
 
 export default class DungeonCrawler extends Game {
-  constructor() {
+  public constructor() {
     super();
     this.setup();
   }
 
-  private setup() {
+  private setup(): void {
     const scene = new Scene();
     scene.pivot = {
       x: -this.width / 2,
@@ -31,7 +31,7 @@ export default class DungeonCrawler extends Game {
     this.currentScene = scene;
   }
 
-  public update(deltaTime: number) {
+  public update(deltaTime: number): void {
     super.update(deltaTime);
   }
 }

@@ -37,10 +37,6 @@ class Room extends GameObject {
     world.add(engine.world, body);
   }
 
-  public getRigidBody() { return this.rigidBody; }
-  public getWidth() { return this.width; }
-  public getHeight() { return this.height; }
-
   public update(deltaTime: number) {
     super.update(deltaTime);
   }
