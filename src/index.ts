@@ -7,6 +7,6 @@ const resources = new Map<string, string>();
 resources.set('spriteSheet', SpriteSheet);
 
 game.loadResources(resources)
-  .then((data) => {
+  .then(() => {
     game.startLoop();
   });
