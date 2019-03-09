@@ -21,6 +21,17 @@ function generateDungeon(numberOfRooms: number): Rectangle[] {
   return rooms;
 }
 
+function selectSuitableRooms(rooms: Rectangle[]): Rectangle[] {
+  const totalWidth = rooms.reduce((acc: number, current: Rectangle) => acc + current.width, 0);
+  const totalHeight = rooms.reduce((acc: number, current: Rectangle) => acc + current.height, 0);
+  const widthThreshold = (totalWidth / rooms.length) * 1.25;
+  const heightThreshold = (totalHeight / rooms.length) * 1.25;
+  return rooms.filter((r: Rectangle) => {
+    return r.width > widthThreshold && r.height > heightThreshold;
+  });
+}
+
 export {
-  generateDungeon
+  generateDungeon,
+  selectSuitableRooms,
 };
