@@ -1,8 +1,8 @@
 import Game from './Game';
 import Scene from './Scene';
 import Room from './Room';
-import { getRandomPointInCircle, roundToNum } from './generation/functions';
-import { Point } from './compiler/types';
+import { Rectangle } from './compiler/types';
+import { generateDungeon } from './generation/dungeon';
 
 export default class DungeonCrawler extends Game {
   public constructor() {
@@ -17,16 +17,12 @@ export default class DungeonCrawler extends Game {
       y: -this.height / 2,
     };
 
-    for(let i=0; i < 40; i++) {
-      const point: Point = getRandomPointInCircle(100);
-      const room = new Room(
-        point.x,
-        point.y,
-        32 + roundToNum(Math.floor(Math.random() * 64), 32),
-        32 + + roundToNum(Math.floor(Math.random() * 64), 32),
+    const rectangles: Rectangle[] = generateDungeon(20);
+    rectangles.forEach((rect: Rectangle) => {
+      scene.addChild(
+        new Room(rect.x, rect.y, rect.width, rect.height)
       );
-      scene.addChild(room);
-    }
+    });
 
     this.currentScene = scene;
   }

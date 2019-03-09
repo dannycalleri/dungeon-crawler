@@ -1,6 +1,13 @@
 import { Container } from "pixi.js";
 import { Body } from "matter-js";
 
+export interface Rectangle {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+}
+
 export interface IGame {
   currentScene: IScene;
   scenes: Map<string, IScene>;
