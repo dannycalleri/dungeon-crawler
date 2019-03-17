@@ -1,4 +1,4 @@
-import { getRandomPointInCircle, roundToNum } from "./functions";
+import { getRandomPointInCircle } from "./functions";
 import { 
   Point,
   Rectangle 
@@ -12,8 +12,8 @@ function generateDungeon(numberOfRooms: number): Rectangle[] {
     const room = {
       x: point.x,
       y: point.y,
-      width: 32 + roundToNum(Math.floor(Math.random() * 64), 32),
-      height: 32 + roundToNum(Math.floor(Math.random() * 64), 32),
+      width: 10 + Math.floor(Math.random() * 100),
+      height: 10 + Math.floor(Math.random() * 100),
     };
     rooms.push(room);
   }

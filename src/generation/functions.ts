@@ -1,6 +1,6 @@
 import { Point } from '../compiler/types';
 
-const roundToNum = (num: number, roundTo: number) => {
+const roundToNum = (num: number, roundTo: number): number => {
   return Math.floor((num + roundTo - 1) / roundTo) * roundTo;
 };
 
@@ -16,8 +16,8 @@ const getRandomPointInCircle = (radius: number): Point => {
   }
 
   return {
-    x: roundToNum(radius * r * Math.cos(t), 32),
-    y: roundToNum(radius * r * Math.sin(t), 32),
+    x: roundToNum(radius * r * Math.cos(t), 4),
+    y: roundToNum(radius * r * Math.sin(t), 4),
   };
 }
 

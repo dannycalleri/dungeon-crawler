@@ -9,7 +9,7 @@ test('generateDungeon called with 20 generates a dungeon with 20 rooms', () => {
   expect(rooms.length).toBe(20);
 });
 
-test('selectRooms should select rooms above threshold', () => {
+test('selectSuitableRooms should select rooms above threshold', () => {
   const rooms: Rectangle[] = [
     { x: 0, y: 0, width: 40, height: 40 },
     { x: 0, y: 0, width: 20, height: 20 },
