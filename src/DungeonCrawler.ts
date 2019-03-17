@@ -55,15 +55,15 @@ export default class DungeonCrawler extends Game {
     console.log(triangles);
   }
 
-  private triangulate(rectangles: Point[]): any {
-    const delaunator = Delaunator.from(rectangles.map((rect: Rectangle) => ([rect.x, rect.y])));
+  private triangulate(points: Point[]): any {
+    const delaunator = Delaunator.from(points.map((point: Point) => ([point.x, point.y])));
     const triangles = delaunator.triangles;
     const coordinates = [];
     for (let i = 0; i < triangles.length; i += 3) {
       coordinates.push([
-        rectangles[triangles[i]],
-        rectangles[triangles[i + 1]],
-        rectangles[triangles[i + 2]]
+        points[triangles[i]],
+        points[triangles[i + 1]],
+        points[triangles[i + 2]]
       ]);
     }
     return coordinates;
