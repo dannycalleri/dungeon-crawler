@@ -4,9 +4,9 @@ import { Engine } from "matter-js";
 import { engine } from "./Physics";
 
 export default class Game implements IGame {
-  private _currentScene: IScene;
+  private _currentScene?: IScene;
   private app: PIXI.Application;
-  scenes: Map<string, IScene>;
+  scenes: Map<string, IScene> = new Map();
 
   constructor() {
     this.app = new PIXI.Application({width: 1600, height: 1200});
@@ -22,7 +22,7 @@ export default class Game implements IGame {
   }
 
   public get currentScene() {
-    return this._currentScene;
+    return this._currentScene!!;
   }
 
   public set currentScene(scene: IScene) {
@@ -38,7 +38,7 @@ export default class Game implements IGame {
     const fixedTimeStep:number = 1.0 / 60.0; // seconds
     const maxSubSteps: number = 3;
     const update: Function = this.update.bind(this);
-    let lastTime: number;
+    let lastTime: number = 0;
 
     (function loop(time: number) {
       requestAnimationFrame(loop);
@@ -72,7 +72,7 @@ export default class Game implements IGame {
   }
 
   public update(deltaTime: number) {
-    this._currentScene.update(deltaTime);
+    this._currentScene!!.update(deltaTime);
   }
 
   private loadProgressHandler (loader: any, resource: any) {

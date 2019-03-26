@@ -1,4 +1,5 @@
 import Delaunator from 'delaunator';
+import {Graph, createGraph} from 'ture';
 import Game from './Game';
 import Scene from './Scene';
 import Room from './Room';
@@ -53,6 +54,13 @@ export default class DungeonCrawler extends Game {
         ))
     );
     console.log(triangles);
+
+    const graph: Graph = createGraph([
+      '1337',
+      '1338',
+      '1339',
+    ]);
+    console.log(graph.vertices);
   }
 
   private triangulate(points: Point[]): any {

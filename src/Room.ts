@@ -9,8 +9,8 @@ import { Bodies } from "matter-js";
 class Room extends GameObject {
   private width: number = 0;
   private height: number = 0;
-  private isColliding: boolean;
-  private _isSuitable: boolean;
+  private isColliding: boolean = false;
+  private _isSuitable: boolean = false;
 
   public constructor(x: number, y: number, width: number, height: number, isSuitable: boolean = false) {
     super();
