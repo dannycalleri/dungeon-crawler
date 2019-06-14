@@ -25,6 +25,7 @@ export interface IScene {
 }
 
 export interface IGameObject {
+  id: string;
   x: number;
   y: number;
   gameObjects: Array<IGameObject>;

@@ -28,9 +28,9 @@ export default class DungeonCrawler extends Game {
     // I'd like all of the rooms to be visible at the moment
     rectangles.forEach((rect: Rectangle) => {
       const suitableRoom = suitable.filter((suitableRoom: Rectangle) => {
-        return areNumbersEqual(suitableRoom.x, rect.x) && 
-          areNumbersEqual(suitableRoom.y, rect.y) && 
-          areNumbersEqual(suitableRoom.width, rect.width) && 
+        return areNumbersEqual(suitableRoom.x, rect.x) &&
+          areNumbersEqual(suitableRoom.y, rect.y) &&
+          areNumbersEqual(suitableRoom.width, rect.width) &&
           areNumbersEqual(suitableRoom.height, rect.height);
       })[0];
 
@@ -49,9 +49,6 @@ export default class DungeonCrawler extends Game {
     const triangles = this.triangulate(
       this.currentScene.gameObjects
         .filter((gameObject: IGameObject) => (gameObject as Room).isSuitable)
-        .map((gameObject: IGameObject) => (
-          {x: gameObject.x, y: gameObject.y}
-        ))
     );
     console.log(triangles);
 
@@ -63,18 +60,18 @@ export default class DungeonCrawler extends Game {
     console.log(graph.vertices);
   }
 
-  private triangulate(points: Point[]): any {
-    const delaunator = Delaunator.from(points.map((point: Point) => ([point.x, point.y])));
-    const triangles = delaunator.triangles;
-    const coordinates = [];
-    for (let i = 0; i < triangles.length; i += 3) {
-      coordinates.push([
-        points[triangles[i]],
-        points[triangles[i + 1]],
-        points[triangles[i + 2]]
+  private triangulate(gameObjects: IGameObject[]): any {
+    const delaunator = Delaunator.from(gameObjects.map((gameObject: IGameObject) => ([gameObject.x, gameObject.y])));
+    const triangleIndices = delaunator.triangles;
+    const triangles = [];
+    for (let i = 0; i < triangleIndices.length; i += 3) {
+      triangles.push([
+        gameObjects[triangleIndices[i]],
+        gameObjects[triangleIndices[i + 1]],
+        gameObjects[triangleIndices[i + 2]]
       ]);
     }
-    return coordinates;
+    return triangles;
   }
 
   private waitForAllBodiesToSleep(): Promise<void> {

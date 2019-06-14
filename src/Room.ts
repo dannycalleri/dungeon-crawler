@@ -1,4 +1,4 @@
-import { 
+import {
   Graphics,
   Sprite,
 } from "pixi.js";
@@ -27,7 +27,7 @@ class Room extends GameObject {
     rectGraphic.beginFill(0x0, 0);
     rectGraphic.drawRect(0, 0, width, height);
     rectGraphic.endFill();
-    
+
     const texture = rectGraphic.generateCanvasTexture();
     const sprite = new Sprite(texture);
     sprite.anchor.x = 0.5;

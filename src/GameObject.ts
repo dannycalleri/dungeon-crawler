@@ -1,19 +1,23 @@
 import { IGameObject, Point } from "./compiler/types";
 import { Container, Graphics } from "pixi.js";
 import { Body } from "matter-js";
+import uuidv1 from "uuid/v1";
 
 export default class GameObject implements IGameObject {
-  _x: number = 0;
-  _y: number = 0;
-  gameObjects: Array<IGameObject> = [];
-  container: Container;
-  debugContainer: Container;
-  rigidBody?: Body;
+  private _x: number = 0;
+  private _y: number = 0;
+  private _id: string;
 
-  constructor() {
+  public gameObjects: IGameObject[] = [];
+  public container: Container;
+  public debugContainer: Container;
+  public rigidBody?: Body;
+
+  public constructor() {
+    this._id = uuidv1();
     this.container = new Container();
     this.debugContainer = new Container();
-    
+
     let rectGraphic = new Graphics();
     rectGraphic.lineStyle(2, 0x888888, 1);
     rectGraphic.beginFill(0x0, 0);
@@ -25,8 +29,9 @@ export default class GameObject implements IGameObject {
     this.container.addChild(this.debugContainer);
   }
 
-  public get x() { return this._x; }
-  public get y() { return this._y; }
+  public get id(): string { return this._id; }
+
+  public get x(): number { return this._x; }
 
   public set x(x: number) {
     this._x = x;
@@ -35,6 +40,8 @@ export default class GameObject implements IGameObject {
       this.rigidBody.position.x = x;
     }
   }
+
+  public get y(): number { return this._y; }
 
   public set y(y: number) {
     this._y = y;
@@ -56,15 +63,16 @@ export default class GameObject implements IGameObject {
     this.container.pivot.y = p.y;
   }
 
-  public addChild(gameObject: IGameObject) {
+  public addChild(gameObject: IGameObject): void {
     this.gameObjects.push(gameObject);
 
     if(this.container) {
+      // eslint-disable-next-line
       this.container.addChild(gameObject.container!!);
     }
   }
 
-  public update(deltaTime: number) {
+  public update(deltaTime: number): void {
     if(this.rigidBody) {
       this.x = this.rigidBody.position.x;
       this.y = this.rigidBody.position.y;
