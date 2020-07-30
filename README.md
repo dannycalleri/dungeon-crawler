@@ -1,9 +1,5 @@
 # Dungeon Crawler
 
-This project has been created with the following goals in mind:
+This is a small game demo I'm building in my spare time.
 
-
-## Todo
-
-* generate uuid's for GameObject(s)
-* create graph using GameObject's generated IDs
+Didn't have time to write a fancy readme 😅
